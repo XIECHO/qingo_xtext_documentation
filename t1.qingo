@@ -1,0 +1,49 @@
+import config.jason.*
+import operations.*
+
+operation t1_iteration(intervals: int[]): bool[] {
+	int K;
+	K = intervals.length;
+	bool[K] result_arr;
+
+	int i;
+	i = 0;
+	using (target : qubit) {
+		while(i < K) {
+			init(target);
+			X(target);
+	
+			wait(target, intervals[i]);
+			result_arr[i] = measure(target);
+	
+			i = i + 1;
+		}
+	}
+
+	return result_arr;
+}
+
+//K表示取样点的数目，N表示每个取样点所制备的量子的数目。返回的结果是N * K的二维数组。
+operation t1(intervals: int[], N: int): bool[][] {
+	int K;
+	K = intervals.length;
+	bool[N][K] results;
+
+	int i;
+	i = 0;
+	while(i < N) {
+		results[i] = t1_iteration(intervals);
+
+		i = i + 1;
+	}
+
+	return results;
+}
+
+operation main(): bool[][]
+{
+	// perform the experiment on qubit 0 for 10000 times.
+	// How to transfer the intervals to the kernel?
+	// support interval has 20 elements
+	return t1({1, 2, 3, 4}, 10);
+}
