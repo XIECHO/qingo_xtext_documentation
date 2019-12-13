@@ -29,12 +29,19 @@ java -jar qingo.jar t1.qingo standard_operations.qingo config-qingo.qingo
 
 执行完后，当前目录下会生成一个子目录”src-gen“，子目录下生成文件t1.eqasm。
 当前目录为
+
 |- qingo.jar
+
 |- t1.qingo 
+
 |- standard_operations.qingo
+
 |- config-qingo.qingo
+
 |- src-gen
+
 |- - t1.eqasm
+
 ## 自己写例子
 所有用qingo编译器编译的源文件以".qingo"结尾命名。
 把t1.qingo替换为你书写的例子，并执行命令(将t1.qingo替换为你写的例子)
